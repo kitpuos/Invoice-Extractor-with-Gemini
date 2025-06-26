@@ -40,15 +40,47 @@ def handle_images(uploaded_images):
 # Streamlit app configuration
 
 st.set_page_config(
-    page_title="Multi Language Invoice Extractor",
+    page_title="Gemini Application",
     page_icon="🤖",
     layout="wide",
 )
 
-st.markdown("<h1 style='text-align: center;'>Gemini Application</h1>", unsafe_allow_html=True)
-st.markdown("<h2 style='text-align: center;'>Gemini 1.5 Flash</h2>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center;'>This demo showcases the capabilities of the Gemini 1.5 Flash model by Google Generative AI. You can input text, upload an image, and provide a prompt to generate a response.</p>", unsafe_allow_html=True)
+st.markdown("""
+    <style>
+        .centered-title {
+            text-align: center;
+            font-size: 36px;
+            color: #4F8BF9;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .centered-subtitle {
+            text-align: center;
+            font-size: 24px;
+            color: #345678;
+            margin-bottom: 10px;
+        }
+        .centered-description {
+            text-align: center;
+            font-size: 18px;
+            color: #969696;
+            margin-bottom: 40px;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
+st.markdown("<div class='centered-title'>Multi Language Invoice Extractor</div>", unsafe_allow_html=True)
+st.markdown("<div class='centered-subtitle'>Gemini 1.5 Flash</div>", unsafe_allow_html=True)
+st.markdown("<div class='centered-description'>This application showcases the capabilities of the Gemini 1.5 Flash model by Google Generative AI. You can input text, upload one or more images, and ask questions to analyze them.</div>", unsafe_allow_html=True)
+
+st.markdown("""
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
 
 # Image upload
@@ -93,6 +125,10 @@ if submit_button:
             response = get_gemini_response(input_prompt, image_parts, input_prompt)
 
         if response:
+            st.markdown("""
+            <h3 style='text-align: center; color: #4CAF50;'>Generated Invoice Summary</h3>
+            """, unsafe_allow_html=True)
+
             st.success("✅ Response generated successfully!")
             st.subheader("Response:")
             st.write(response)
